@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="platfrom:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="tandb.war">
+      <element id="artifact" artifact-name="platfrom:war exploded" />
+    </root>
+  </artifact>
+</component>
