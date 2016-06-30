@@ -21,36 +21,17 @@ public class TestThreadRedis {
     private static List<Future<Object>> resultList = new ArrayList<Future<Object>>();
 
     public static void main(String[] args) {
-        for (int i = 0; i < 200; i++) {
-            final int index = i + 1;
-            ThreadPoolUtil.execute(new Runnable() {
-                @Override
-                public void run() {
-                    Message message = new Message(index, "tanbobo" + index);
-                    JedisUtil.set((key + index).getBytes(), SerializerUtil.serialize(message));
-                }
-            });
-        }
+//        for (int i = 0; i < 200; i++) {
+//            final int index = i + 1;
+//            ThreadPoolUtil.execute(new Runnable() {
+//                @Override
+//                public void run() {
+//                    Message message = new Message(index, "tanbobo" + index);
+//                    JedisUtil.set((key + index).getBytes(), SerializerUtil.serialize(message));
+//                }
+//            });
+//        }
 
-        long a = System.currentTimeMillis();
-
-
-        while (true) {
-            /**
-             * 通过不断运行ExecutorService.isTerminated()方法检测全部的线程是否都已经运行结束
-             */
-            if (ThreadPoolUtil.fixedThreadPool.isTerminated()) {
-                System.out.println("所有任务执行完毕");
-                System.out.println("时间差=" + String.valueOf(System.currentTimeMillis() - a));
-                break;
-            }
-            try {
-                //milliseconds
-                Thread.sleep(200);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
 
         for (int i = 0; i < 200; i++) {
             final int index = i + 1;
