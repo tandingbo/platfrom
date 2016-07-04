@@ -1,9 +1,9 @@
 package com.tanbobo.platfrom.base.common.redis;
 
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.JedisPoolConfig;
+import redis.clients.jedis.*;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -11,7 +11,7 @@ import java.util.Set;
 public class JedisUtil {
 
     private static final String JEDIS_IP = "123.56.126.226";
-    private static final int JEDIS_PORT = 7001;
+    private static final int JEDIS_PORT = 6379;
     private static String JEDIS_PASSWORD = "";
     //private static String JEDIS_SLAVE;
 
@@ -54,7 +54,7 @@ public class JedisUtil {
         }
     }
 
-    public static Set<String> getAllKey(){
+    public static Set<String> getAllKey() {
         Jedis jedis = null;
         Set<String> keys = null;
         try {
@@ -66,27 +66,6 @@ public class JedisUtil {
             close(jedis);
         }
         return keys;
-    }
-
-    /**
-     * 获取数据
-     *
-     * @param key
-     * @return
-     */
-    public static String get(String key) {
-        String value = null;
-        Jedis jedis = null;
-        try {
-            jedis = jedisPool.getResource();
-            value = jedis.get(key);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            //返还到连接池
-            close(jedis);
-        }
-        return value;
     }
 
     public static byte[] get(byte[] key) {
@@ -400,7 +379,7 @@ public class JedisUtil {
         Jedis jedis = null;
         try {
             jedis = jedisPool.getResource();
-            jedis.llen(key);
+            len = jedis.llen(key);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -410,8 +389,61 @@ public class JedisUtil {
         return len;
     }
 
+    public static void pipelineLpush(byte[] key, byte[]... bytes) {
+        Jedis jedis = null;
+        Pipeline pl = null;
+        List<Response<byte[]>> responses = null;
+        try {
+            jedis = jedisPool.getResource();
+            pl = jedis.pipelined();
+            pl.lpush(key, bytes);
+            pl.sync();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (pl != null) {
+                try {
+                    pl.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            //返还到连接池
+            close(jedis);
+        }
+    }
+
+    public static List<Response<byte[]>> pipelineRpop(int count, byte[] key) {
+        Jedis jedis = null;
+        Pipeline pl = null;
+        List<Response<byte[]>> responses = null;
+        try {
+            jedis = jedisPool.getResource();
+            pl = jedis.pipelined();
+
+            responses = new ArrayList<Response<byte[]>>();
+            for (int i = 0; i < count; i++) {
+                responses.add(pl.rpop(key));
+            }
+            pl.sync();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (pl != null) {
+                try {
+                    pl.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            //返还到连接池
+            close(jedis);
+        }
+        return responses;
+    }
+
     public static void main(String[] args) {
-        flushdb();
+
     }
 
 }

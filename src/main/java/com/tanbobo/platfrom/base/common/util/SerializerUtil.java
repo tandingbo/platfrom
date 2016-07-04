@@ -21,7 +21,7 @@ public class SerializerUtil {
      * @param obj, 对象
      * @return
      */
-    public static <T> byte[] serialize(T obj) {
+    public static <T> byte[] serialize(T obj) throws Exception {
         if (obj == null) {
             throw new RuntimeException("序列化对象(" + obj + ")!");
         }
@@ -46,7 +46,7 @@ public class SerializerUtil {
      * @param targetClass
      * @return
      */
-    public static <T> T deserialize(byte[] bytes, Class<T> targetClass) {
+    public static <T> T deserialize(byte[] bytes, Class<T> targetClass) throws Exception {
         if (bytes == null || bytes.length == 0) {
             throw new RuntimeException("反序列化对象发生异常,byte序列为空!");
         }
@@ -67,7 +67,7 @@ public class SerializerUtil {
      * @param objList, 集合
      * @return
      */
-    public static <T> byte[] serializeList(List<T> objList) {
+    public static <T> byte[] serializeList(List<T> objList) throws Exception {
         if (objList == null || objList.isEmpty()) {
             throw new RuntimeException("序列化对象列表(" + objList + ")参数异常!");
         }
@@ -103,7 +103,7 @@ public class SerializerUtil {
      * @param targetClass
      * @return
      */
-    public static <T> List<T> deserializeList(byte[] bytes, Class<T> targetClass) {
+    public static <T> List<T> deserializeList(byte[] bytes, Class<T> targetClass) throws Exception {
         if (bytes == null || bytes.length == 0) {
             throw new RuntimeException("反序列化对象发生异常,byte序列为空!");
         }
