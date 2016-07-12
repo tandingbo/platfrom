@@ -135,3 +135,16 @@ function accDiv(arg1, arg2) {
 Number.prototype.div = function (arg) {
     return accDiv(this, arg);
 };
+
+/*
+ //加法示例（其它的都类似）
+
+ function calculate() {
+ //数字1
+ var num1 = 10;
+ //数字2
+ var num2 = 5;
+ //计算 num1 + num2
+ alert(num1.add(num2));
+ }
+ */
