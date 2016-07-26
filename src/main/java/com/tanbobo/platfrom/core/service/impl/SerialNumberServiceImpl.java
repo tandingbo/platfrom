@@ -23,7 +23,7 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  *
  */
-@Service("serialNumberService")
+//@Service("serialNumberService")
 public class SerialNumberServiceImpl implements ISerialNumService {
     private static final Logger LOGGER = LoggerFactory.getLogger(SerialNumberServiceImpl.class);
 
