@@ -58,4 +58,21 @@
         <param-value>/WEB-INF/spring/spring-context.xml</param-value>
     </context-param>
 
+    <!-- 配置过滤器 start -->
+    <filter>
+        <filter-name>IPFilter</filter-name>
+        <filter-class>com.tanbobo.platfrom.base.common.interceptor.IPFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>IPFilter</filter-name>
+        <url-pattern>/render/*</url-pattern>
+    </filter-mapping>
+    <!-- 配置过滤器 end -->
+
+    <!-- 配置监听器 start -->
+    <listener>
+        <listener-class>com.tanbobo.platfrom.base.common.listener.MyListener</listener-class>
+    </listener>
+    <!-- 配置监听器 start -->
+
 </web-app>
