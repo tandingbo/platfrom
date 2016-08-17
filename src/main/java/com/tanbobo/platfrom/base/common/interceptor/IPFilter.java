@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Created by tanbobo on 2016/8/17.
+ * IP过滤器
  */
 public class IPFilter implements Filter {
     /**
@@ -37,14 +37,14 @@ public class IPFilter implements Filter {
     }
 
     /**
-     * @Description 核心处理代码
      * @param servletRequest
      * @param servletResponse
      * @param chain
      * @throws IOException
      * @throws ServletException
+     * @Description 核心处理代码
      * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest,
-     *      javax.servlet.ServletResponse, javax.servlet.FilterChain)
+     * javax.servlet.ServletResponse, javax.servlet.FilterChain)
      */
     @SuppressWarnings("unchecked")
     @Override
@@ -103,12 +103,12 @@ public class IPFilter implements Filter {
     }
 
     /**
-     * @Description 是否是被限制的IP
-     * @author zhangyd
-     * @date 2016年8月8日 下午5:39:17
      * @param limitedIpMap
      * @param ip
      * @return true : 被限制 | false : 正常
+     * @Description 是否是被限制的IP
+     * @author zhangyd
+     * @date 2016年8月8日 下午5:39:17
      */
     private boolean isLimitedIP(Map<String, Long> limitedIpMap, String ip) {
         if (limitedIpMap == null || ip == null) {
@@ -128,10 +128,10 @@ public class IPFilter implements Filter {
     }
 
     /**
+     * @param limitedIpMap
      * @Description 过滤受限的IP，剔除已经到期的限制IP
      * @author zhangyd
      * @date 2016年8月8日 下午5:34:33
-     * @param limitedIpMap
      */
     private void filterLimitedIpMap(Map<String, Long> limitedIpMap) {
         if (limitedIpMap == null) {
@@ -151,10 +151,10 @@ public class IPFilter implements Filter {
     /**
      * 初始化用户访问次数和访问时间
      *
-     * @author zhangyd
-     * @date 2016年7月29日 上午10:01:39
      * @param ipMap
      * @param ip
+     * @author zhangyd
+     * @date 2016年7月29日 上午10:01:39
      */
     private void initIpVisitsNumber(Map<String, Long[]> ipMap, String ip) {
         Long[] ipInfo = new Long[2];
