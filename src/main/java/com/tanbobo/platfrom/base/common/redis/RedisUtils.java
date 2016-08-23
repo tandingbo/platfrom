@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class RedisUtils {
 
-    private static final int port = 7001;
+    private static final int port = 6379;
     private static final String host = "123.56.126.226";
 
     private Jedis jedis;//非切片额客户端连接
