@@ -35,12 +35,12 @@ public class BXTest {
             System.out.println(tl);
 
             BXexample.BXfunction(tl, executor -> {
-                int k = Integer.parseInt((String) executor);
-                System.out.println(k);
-                for (int i1 = 0; i1 < k * 10000000; i1++) {
+                int k = Integer.parseInt((String)executor);
+
+                for(int i1 = 0; i1 <k*10000000; i1++){
                     //执行循环
                 }
-                System.out.println(k + "：hello world");
+                System.out.println(k+"：hello world");
             });
         }
     }

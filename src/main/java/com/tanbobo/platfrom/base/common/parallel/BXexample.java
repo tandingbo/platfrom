@@ -12,6 +12,7 @@ import java.util.concurrent.*;
  * 并行调度封装类
  */
 public class BXexample {
+
     private static ExecutorService createCustomExecutorService(int poolSize, final String method) {
         int coreSize = Runtime.getRuntime().availableProcessors();//返回系统CUP数量
         if (poolSize < coreSize) {
