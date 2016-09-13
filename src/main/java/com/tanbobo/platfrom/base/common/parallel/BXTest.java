@@ -27,21 +27,20 @@ public class BXTest {
         paramCollection.add("14");
         paramCollection.add("13");
 
-        int freesize = 3;//当前处理能力
+        int freesize = 4;//当前处理能力
 
         for (int i = 0; i < paramCollection.size(); i = i + freesize) {
 
             List<String> tl = BXexample.getSubListPage(paramCollection, i, freesize);
+            System.out.println(tl);
 
-            BXexample.BXfunction(tl, new ExectueCallBack() {
-                public void doExectue(Object executor) throws Exception {
-                    int k = Integer.parseInt((String) executor);
-
-                    for (int i = 0; i < k * 10000000; i++) {
-                        //执行循环
-                    }
-                    System.out.println(k + "：hello world");
+            BXexample.BXfunction(tl, executor -> {
+                int k = Integer.parseInt((String) executor);
+                System.out.println(k);
+                for (int i1 = 0; i1 < k * 10000000; i1++) {
+                    //执行循环
                 }
+                System.out.println(k + "：hello world");
             });
         }
     }
