@@ -4,6 +4,7 @@ import java.security.*;
 import java.util.HashMap;
 
 import javax.crypto.*;
+import javax.crypto.spec.SecretKeySpec;
 
 /**
  * des加密
@@ -86,7 +87,7 @@ public class DESEngine {
         for (int i = 0; i < arrBTmp.length && i < arrB.length; i++) {
             arrB[i] = arrBTmp[i];
         }
-        Key key = new javax.crypto.spec.SecretKeySpec(arrB, "DES");
+        Key key = new SecretKeySpec(arrB, "DES");
 
         return key;
     }

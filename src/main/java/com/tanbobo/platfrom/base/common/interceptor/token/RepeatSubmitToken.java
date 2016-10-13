@@ -1,0 +1,18 @@
+package com.tanbobo.platfrom.base.common.interceptor.token;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+/**
+ * token拦截器接口注解
+ */
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface RepeatSubmitToken {
+
+    boolean save() default false;
+
+    boolean remove() default false;
+}

@@ -22,7 +22,9 @@ public class WatchThread {
         //此处不可以用接口 需要使用Executor的实现类 ExecutorService  Executor未提供shutdown等方法
         ExecutorService executor = Executors.newFixedThreadPool(threadNum);
         for (int i = 0; i < threadNum; i++) { // 开threadNum个线程
-            Runnable task = new TestThread(threadSignal);
+            Runnable task = () -> {
+
+            };
             // 执行
             executor.execute(task);
 
