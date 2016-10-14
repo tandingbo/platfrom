@@ -216,10 +216,6 @@
                     <encoding>UTF-8</encoding>
                     <source>1.8</source>
                     <target>1.8</target>
-                    <compilerArguments>
-                        <verbose />
-                        <bootclasspath>${java.home}\lib\rt.jar</bootclasspath>
-                    </compilerArguments>
                 </configuration>
             </plugin>
 
